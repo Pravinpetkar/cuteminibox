@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP - About Page
+-->
+<html>
+	<head>
+		<title>About - CuteminiBox</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			.about-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 2.5em;
+				margin: 2.5em 0;
+			}
+			.about-grid .stat-box {
+				background: rgba(255,255,255,0.04);
+				border: 1px solid rgba(255,255,255,0.08);
+				border-radius: 6px;
+				padding: 1.8em 2em;
+				text-align: center;
+			}
+			.about-grid .stat-box .number {
+				display: block;
+				font-size: 2.8em;
+				font-weight: 700;
+				color: #4acaa8;
+				line-height: 1;
+				margin-bottom: 0.2em;
+			}
+			.about-grid .stat-box p {
+				margin: 0;
+				font-size: 0.9em;
+				color: #bbb;
+			}
+			.value-list {
+				list-style: none;
+				padding: 0;
+				margin: 1.5em 0 2.5em 0;
+			}
+			.value-list li {
+				padding: 0.6em 0 0.6em 2em;
+				position: relative;
+				border-bottom: 1px solid rgba(255,255,255,0.06);
+				font-size: 0.95em;
+			}
+			.value-list li::before {
+				content: "✓";
+				position: absolute;
+				left: 0;
+				color: #4acaa8;
+				font-weight: 700;
+			}
+			.cta-inline {
+				text-align: center;
+				margin: 3em 0 1em 0;
+			}
+			@media (max-width: 736px) {
+				.about-grid { grid-template-columns: 1fr; }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html"><img src="images/Logo.png" alt="CuteminiBox" style="height:40px;width:auto;vertical-align:middle;" /></a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="generic.html">About</a></li>
+									<li><a href="cmb-track-builder.html">CMB Track Builder</a></li>
+									<li><a href="cmb-track-designer.html">CMB Track Designer</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+			<article id="main">
+				<header>
+					<h2>About CuteminiBox</h2>
+					<p>Game developer tools built with real pipelines in mind</p>
+				</header>
+
+				<section class="wrapper style5">
+					<div class="inner">
+
+						<!-- Who we are -->
+						<h3>Who We Are</h3>
+						<p>CuteminiBox is an independent Unity asset publisher dedicated to building high-quality, production-ready tools for game developers. We are developers ourselves — we have felt the friction of slow level-design pipelines, the pain of rebuilding the same track systems from scratch on every project, and the frustration of assets that look great on the store page but fall apart in a real codebase.</p>
+						<p>That experience is exactly what drives us. Every asset we release is something we would want to use on our own projects — documented properly, built to last, and designed to slot into your workflow without fighting you.</p>
+
+						<hr />
+
+						<!-- What we build -->
+						<h3>What We Build</h3>
+						<p>Our current catalogue focuses on race and level design tooling for Unity, with more categories in active development. We specialise in editor-time tools that save hours of manual work — the kind of tools that make you wonder how you built without them.</p>
+
+						<ul class="value-list">
+							<li>Modular track and circuit building systems with smart snapping and validation</li>
+							<li>Spline-based road and terrain generation with zero manual modelling</li>
+							<li>Compatible with Built-in, URP, and HDRP render pipelines out of the box</li>
+							<li>Lightweight runtime footprint — our tools do the heavy lifting at edit time</li>
+							<li>Clean, commented source code you can extend and maintain long-term</li>
+							<li>Actively maintained with regular updates and direct developer support</li>
+						</ul>
+
+						<hr />
+
+						<!-- Our philosophy -->
+						<h3>Our Philosophy</h3>
+						<p>We believe a great asset should feel invisible. It should fit naturally into the way you already work, handle the tedious parts quietly, and get out of the way when you need to make creative decisions. We do not ship bloatware, we do not pad documentation to look more professional than we are, and we do not abandon assets after the first sale.</p>
+						<p>When you buy from CuteminiBox you get direct access to the people who built the tool. If something does not work the way you expect, we want to hear about it — and we will fix it.</p>
+
+						<hr />
+
+						<!-- Stats -->
+						<h3>By the Numbers</h3>
+						<div class="about-grid">
+							<div class="stat-box">
+								<span class="number">2+</span>
+								<p>Production-ready assets on the Unity Asset Store</p>
+							</div>
+							<div class="stat-box">
+								<span class="number">3</span>
+								<p>Render pipelines supported — Built-in, URP, HDRP</p>
+							</div>
+							<div class="stat-box">
+								<span class="number">2021+</span>
+								<p>Unity LTS versions fully supported</p>
+							</div>
+							<div class="stat-box">
+								<span class="number">100%</span>
+								<p>Independent — built, maintained, and supported in-house</p>
+							</div>
+						</div>
+
+						<hr />
+
+						<!-- CTA -->
+						<h3>Find Us on the Asset Store</h3>
+						<p>All of our assets are available on the Unity Asset Store. Browse the full catalogue, read reviews, and try the free demos where available.</p>
+
+						<div class="cta-inline">
+							<a href="https://assetstore.unity.com/publishers/146412"
+							   target="_blank" rel="noopener noreferrer"
+							   class="button primary large">View Our Assets on Unity Store</a>
+						</div>
+
+					</div>
+				</section>
+			</article>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://www.youtube.com/@CuteminiBox" target="_blank" rel="noopener noreferrer" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2026 CuteminiBox. All rights reserved.</li>
+				</ul>
+			</footer>
+
+		</div><!-- /page-wrapper -->
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

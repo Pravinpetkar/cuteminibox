@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP - CMB Track Builder Detail Page
+-->
+<html>
+	<head>
+		<title>CMB Track Builder - CuteminiBox</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* ── Slider ── */
+			.slider-wrapper {
+				position: relative;
+				max-width: 860px;
+				margin: 0 auto 2em auto;
+				overflow: hidden;
+				border-radius: 8px;
+				background: #000;
+			}
+			.slider-track {
+				display: flex;
+				transition: transform 0.5s ease;
+			}
+			.slider-track img {
+				min-width: 100%;
+				width: 100%;
+				height: 480px;
+				object-fit: cover;
+				flex-shrink: 0;
+			}
+			.slider-btn {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(0,0,0,0.55);
+				color: #fff;
+				border: none;
+				padding: 0.75em 1.1em;
+				font-size: 1.4em;
+				cursor: pointer;
+				border-radius: 4px;
+				z-index: 10;
+				transition: background 0.2s;
+			}
+			.slider-btn:hover { background: rgba(0,0,0,0.85); }
+			.slider-btn.prev { left: 12px; }
+			.slider-btn.next { right: 12px; }
+			.slider-dots {
+				text-align: center;
+				margin-bottom: 2.5em;
+			}
+			.slider-dots span {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: #aaa;
+				margin: 0 5px;
+				cursor: pointer;
+				transition: background 0.2s;
+			}
+			.slider-dots span.active { background: #4acaa8; }
+
+			/* ── Feature grid ── */
+			.feature-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 1.5em;
+				margin: 2em 0 3em 0;
+				text-align: left;
+			}
+			.feature-grid .feature-item {
+				background: rgba(255,255,255,0.04);
+				border: 1px solid rgba(255,255,255,0.08);
+				border-radius: 6px;
+				padding: 1.4em 1.6em;
+			}
+			.feature-grid .feature-item h4 {
+				margin: 0 0 0.4em 0;
+				color: #4acaa8;
+				font-size: 0.95em;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+			}
+			.feature-grid .feature-item p {
+				margin: 0;
+				font-size: 0.9em;
+				line-height: 1.6;
+			}
+
+			/* ── CTA strip ── */
+			.asset-cta {
+				text-align: center;
+				padding: 3em 0 2em 0;
+			}
+			.asset-cta .button.xlarge {
+				font-size: 1.1em;
+				padding: 0.85em 2.5em;
+			}
+			.back-link {
+				display: inline-block;
+				margin-top: 1.2em;
+				font-size: 0.85em;
+				color: #aaa;
+				text-decoration: none;
+			}
+			.back-link:hover { color: #fff; }
+
+			/* ── Section spacing ── */
+			#detail-hero { padding: 6em 0 3em 0; }
+			#detail-body { padding: 3em 0; }
+
+			@media (max-width: 736px) {
+				.slider-track img { height: 220px; }
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html"><img src="images/Logo.png" alt="CuteminiBox" style="height:40px;width:auto;vertical-align:middle;" /></a></h1>
+				<nav id="nav">
+					<ul>
+						<li class="special">
+							<a href="#menu" class="menuToggle"><span>Menu</span></a>
+							<div id="menu">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li><a href="cmb-track-builder.html">CMB Track Builder</a></li>
+									<li><a href="cmb-track-designer.html">CMB Track Designer</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Hero -->
+			<section id="detail-hero" class="wrapper style1 special">
+				<div class="inner">
+					<header class="major">
+						<h2>CMB Track Builder</h2>
+						<p>The fastest way to build, prototype, and polish race tracks in Unity.<br />
+						No manual modelling. No guesswork. Just build.</p>
+					</header>
+				</div>
+			</section>
+
+			<!-- Image Slider -->
+			<section id="detail-body" class="wrapper style5">
+				<div class="inner">
+
+					<div class="slider-wrapper">
+						<button class="slider-btn prev" aria-label="Previous slide">&#8249;</button>
+						<div class="slider-track" id="sliderTrack">
+							<img src="images/CMB Track Builder.jpg"  alt="CMB Track Builder - Overview" />
+							<img src="images/TB01.jpg"              alt="CMB Track Builder - Screenshot 2" />
+							<img src="images/TB02.jpg"              alt="CMB Track Builder - Screenshot 3" />
+							<img src="images/TB03.jpg"              alt="CMB Track Builder - Screenshot 4" />
+							<img src="images/TB04.jpg"              alt="CMB Track Builder - Screenshot 5" />
+							<img src="images/TB05.jpg"              alt="CMB Track Builder - Screenshot 6" />
+							<img src="images/TB06.jpg"              alt="CMB Track Builder - Screenshot 7" />
+						</div>
+						<button class="slider-btn next" aria-label="Next slide">&#8250;</button>
+					</div>
+
+					<div class="slider-dots" id="sliderDots">
+						<span class="active" data-index="0"></span>
+						<span data-index="1"></span>
+						<span data-index="2"></span>
+						<span data-index="3"></span>
+						<span data-index="4"></span>
+						<span data-index="5"></span>
+						<span data-index="6"></span>
+					</div>
+
+					<!-- About -->
+					<h3>About CMB Track Builder</h3>
+					<p>CMB Track Builder is a modular, editor-time track creation toolkit for Unity. It lets you snap prefab track pieces together with a live ghost preview, stack multi-height layers, auto-generate supports beneath elevated sections, and validate the full circuit for gaps or misalignments — all without leaving the Unity Editor.</p>
+					<p>Whether you are prototyping a new level in minutes or polishing a production-ready race circuit, CMB Track Builder cuts the tedious work so you can focus on fun.</p>
+
+					<!-- Features -->
+					<h3>Key Features</h3>
+					<div class="feature-grid">
+						<div class="feature-item">
+							<h4>Smart Snapping</h4>
+							<p>Pieces auto-align to connection points so building feels natural and mistake-free.</p>
+						</div>
+						<div class="feature-item">
+							<h4>Ghost Preview</h4>
+							<p>See exactly where the next piece lands before placing it, in real time.</p>
+						</div>
+						<div class="feature-item">
+							<h4>Height-Layer Building</h4>
+							<p>Stack tracks at multiple elevations to create overpasses, loops, and complex layouts.</p>
+						</div>
+						<div class="feature-item">
+							<h4>Auto Supports</h4>
+							<p>Pillars and supports are generated automatically under elevated sections.</p>
+						</div>
+						<div class="feature-item">
+							<h4>Validation Tools</h4>
+							<p>Scan the full track for gaps, open ends, or misaligned pieces with one click.</p>
+						</div>
+						<div class="feature-item">
+							<h4>Fast Editing Workflows</h4>
+							<p>Undo, replace, and reorder pieces quickly with keyboard shortcuts and context menus.</p>
+						</div>
+					</div>
+
+					<!-- Specs -->
+					<h3>Technical Details</h3>
+					<ul>
+						<li><strong>Engine:</strong> Unity 2021.3 LTS and above</li>
+						<li><strong>Render Pipeline:</strong> Built-in, URP, HDRP compatible</li>
+						<li><strong>Platform:</strong> Editor-time tool — works on all Unity build targets</li>
+						<li><strong>Package size:</strong> Lightweight — no runtime overhead</li>
+					</ul>
+
+					<!-- CTA -->
+					<div class="asset-cta">
+						<a href="https://assetstore.unity.com/packages/tools/modeling/cmb-track-builder-380832"
+						   target="_blank" rel="noopener noreferrer"
+						   class="button primary xlarge">Get Assets on Unity Store</a>
+						<br />
+						<a href="index.html" class="back-link">&#8592; Back to all assets</a>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://www.youtube.com/@CuteminiBox" target="_blank" rel="noopener noreferrer" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2026 CuteminiBox. All rights reserved.</li>
+				</ul>
+			</footer>
+
+		</div><!-- /page-wrapper -->
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			(function () {
+				var track  = document.getElementById('sliderTrack');
+				var dots   = document.querySelectorAll('#sliderDots span');
+				var total  = dots.length;
+				var current = 0;
+
+				function goTo(index) {
+					current = (index + total) % total;
+					track.style.transform = 'translateX(-' + (current * 100) + '%)';
+					dots.forEach(function (d) { d.classList.remove('active'); });
+					dots[current].classList.add('active');
+				}
+
+				document.querySelector('.slider-btn.prev').addEventListener('click', function () { goTo(current - 1); });
+				document.querySelector('.slider-btn.next').addEventListener('click', function () { goTo(current + 1); });
+				dots.forEach(function (d) {
+					d.addEventListener('click', function () { goTo(parseInt(d.getAttribute('data-index'))); });
+				});
+
+				// Auto-advance every 4 s
+				setInterval(function () { goTo(current + 1); }, 4000);
+			})();
+		</script>
+
+	</body>
+</html>
