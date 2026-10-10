@@ -206,13 +206,12 @@
 							</header>
 
 							<!-- Ask a question form -->
-							<div class="ask-form-wrap">
+							<div class="ask-form-wrap" id="qna-form-wrap">
 								<h3>Still have a question?</h3>
 								<p>Fill in the form below and we will reply to your email address.</p>
-								<form action="https://formsubmit.co/cuteminibox@gmail.com" method="POST">
+								<form id="qna-form" action="https://formsubmit.co/ajax/cuteminibox@gmail.com" method="POST">
 									<input type="hidden" name="_subject" value="Question from CuteminiBox website" />
 									<input type="hidden" name="_captcha" value="false" />
-									<input type="hidden" name="_next" value="thankyou.html" />
 									<div class="fields">
 										<div class="field half">
 											<label for="qna-name">Your Name</label>
@@ -228,9 +227,16 @@
 										</div>
 									</div>
 									<ul class="actions special">
-										<li><input type="submit" value="Send Question" class="button primary" /></li>
+										<li><input type="submit" value="Send Question" class="button primary" id="qna-submit" /></li>
 									</ul>
 								</form>
+
+								<!-- Success message (hidden until form sent) -->
+								<div id="qna-success" style="display:none; text-align:center; padding: 2em 0;">
+									<span class="icon solid fa-check-circle" style="font-size:2.5em; color:#4acaa8; display:block; margin-bottom:0.4em;"></span>
+									<h3 style="color:#4acaa8; margin-bottom:0.3em;">Message Received!</h3>
+									<p style="color:#ccc; margin:0;">Thanks for reaching out. We will reply to your email within 1–2 business days.</p>
+								</div>
 							</div>
 
 						</div>
@@ -256,6 +262,38 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		<script>
+			/* Q&A form — AJAX submit, show inline success message */
+			document.getElementById('qna-form').addEventListener('submit', function(e) {
+				e.preventDefault();
+				var form    = this;
+				var btn     = document.getElementById('qna-submit');
+				btn.value   = 'Sending...';
+				btn.disabled = true;
+
+				fetch(form.action, {
+					method: 'POST',
+					body: new FormData(form),
+					headers: { 'Accept': 'application/json' }
+				})
+				.then(function(response) { return response.json(); })
+				.then(function(data) {
+					if (data.success === 'true' || data.success === true) {
+						form.style.display = 'none';
+						document.getElementById('qna-success').style.display = 'block';
+					} else {
+						btn.value    = 'Send Question';
+						btn.disabled = false;
+						alert('Something went wrong. Please try again.');
+					}
+				})
+				.catch(function() {
+					btn.value    = 'Send Question';
+					btn.disabled = false;
+					alert('Could not send message. Please check your connection and try again.');
+				});
+			});
+		</script>
 
 	</body>
 </html>
