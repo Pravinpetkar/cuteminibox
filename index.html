@@ -435,12 +435,30 @@
 				video.addEventListener('ended', finishIntro);
 				video.addEventListener('error', finishIntro);
 
-				var playAttempt = video.play();
-				if (playAttempt && typeof playAttempt.catch === 'function') {
-					playAttempt.catch(function () {
-						/* Some mobile browsers block audible autoplay until the
-						   visitor interacts with the page. No extra button is shown. */
-					});
+				/* Try autoplay with sound first. If the browser blocks audible
+				   autoplay (common on phones and some desktop profiles), retry
+				   muted so the intro still starts. No sound/enable button is shown. */
+				function startIntro() {
+					var attempt = video.play();
+					if (attempt && typeof attempt.catch === 'function') {
+						attempt.catch(function () {
+							video.muted = true;
+							var mutedAttempt = video.play();
+							if (mutedAttempt && typeof mutedAttempt.catch === 'function') {
+								mutedAttempt.catch(function () {
+									/* If playback is unavailable, remove the overlay
+									   rather than leaving the page covered indefinitely. */
+									finishIntro();
+								});
+							}
+						});
+					}
+				}
+
+				if (video.readyState >= 2) {
+					startIntro();
+				} else {
+					video.addEventListener('loadeddata', startIntro, { once: true });
 				}
 			})();
 		</script>
