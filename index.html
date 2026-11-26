@@ -436,25 +436,43 @@
 				video.addEventListener('ended', finishIntro);
 				video.addEventListener('error', finishIntro);
 
-				/* Try autoplay with sound first. If the browser blocks audible
-				   autoplay (common on phones and some desktop profiles), retry
-				   muted so the intro still starts. No sound/enable button is shown. */
+				/* Mobile browsers generally reject audible autoplay. Start the
+				   intro muted so it plays, then unmute on the first real touch.
+				   There is no sound button; Skip Intro remains the only control. */
+				video.muted = true;
+				video.volume = 1;
+
 				function startIntro() {
 					var attempt = video.play();
 					if (attempt && typeof attempt.catch === 'function') {
 						attempt.catch(function () {
-							video.muted = true;
-							var mutedAttempt = video.play();
-							if (mutedAttempt && typeof mutedAttempt.catch === 'function') {
-								mutedAttempt.catch(function () {
-									/* If playback is unavailable, remove the overlay
-									   rather than leaving the page covered indefinitely. */
-									finishIntro();
-								});
-							}
+							finishIntro();
 						});
 					}
 				}
+
+				var soundEnabled = false;
+				function enableIntroSound(event) {
+					if (finished || soundEnabled) return;
+					if (skipButton && (event.target === skipButton || skipButton.contains(event.target))) return;
+
+					soundEnabled = true;
+					video.muted = false;
+					video.volume = 1;
+					var attempt = video.play();
+					if (attempt && typeof attempt.catch === 'function') {
+						attempt.catch(function () {
+							/* If this browser still blocks audio, let the next tap retry. */
+							soundEnabled = false;
+							video.muted = true;
+						});
+					}
+				}
+
+				/* pointerdown is handled directly in the user gesture, which is
+				   more reliable for mobile Safari/Chrome than a delayed callback. */
+				overlay.addEventListener('pointerdown', enableIntroSound);
+				overlay.addEventListener('click', enableIntroSound);
 
 				if (video.readyState >= 2) {
 					startIntro();
