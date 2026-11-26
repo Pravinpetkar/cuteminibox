@@ -68,10 +68,23 @@
 				visibility: visible;
 				transition: opacity 0.7s ease, visibility 0.7s ease;
 			}
+			#intro-video-overlay {
+				width: 100vw;
+				height: 100vh;
+				height: 100dvh;
+				overflow: hidden;
+				padding: 0;
+				box-sizing: border-box;
+			}
 			#intro-video-overlay video {
+				display: block;
 				width: 100%;
 				height: 100%;
+				max-width: 100%;
+				max-height: 100%;
 				object-fit: cover;
+				object-position: center;
+				background: #000;
 			}
 			#intro-video-overlay.hide {
 				opacity: 0;
@@ -104,17 +117,56 @@
 			}
 			#play-intro[hidden] { display: none; }
 
+			/* Mobile intro layout */
+			@media screen and (max-width: 736px) {
+				#intro-video-overlay {
+					inset: 0;
+					width: 100%;
+					height: 100vh;
+					height: 100dvh;
+					min-height: 0;
+					padding: 0;
+				}
+				#intro-video-overlay video {
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+					object-position: center;
+				}
+				#skip-intro {
+					right: max(14px, env(safe-area-inset-right));
+					bottom: max(16px, env(safe-area-inset-bottom));
+					padding: 11px 18px;
+					min-height: 44px;
+					font-size: 14px;
+				}
+				#play-intro {
+					left: 50%;
+					bottom: calc(50% + 34px);
+					max-width: calc(100vw - 40px);
+					padding: 12px 20px;
+					font-size: 15px;
+					white-space: nowrap;
+				}
+			}
+			@media (max-width: 380px) {
+				#skip-intro {
+					padding: 10px 15px;
+					font-size: 13px;
+				}
+			}
+
 		</style>
 	</head>
 	<body class="landing is-preload">
 		<!-- First-visit intro video overlay -->
 		<div id="intro-video-overlay" aria-label="CuteminiBox intro video">
-			<video id="intro-video" autoplay="autoplay" playsinline preload="auto">
+			<video id="intro-video" autoplay="autoplay" muted playsinline webkit-playsinline preload="metadata">
 				<source src="videos/cmb-intro.mp4" type="video/mp4" />
 				Your browser does not support the video element.
 			</video>
 			<button id="skip-intro" type="button">Skip Intro</button>
-			<button id="play-intro" type="button" hidden>Play Intro</button>
+			<button id="play-intro" type="button" hidden>Play Intro with Sound</button>
 		</div>
 
 
@@ -384,13 +436,21 @@
 				}
 
 				if (playButton) {
+					/* Muted autoplay is more reliable on mobile browsers.
+					   A direct tap lets visitors turn the intro sound on. */
+					if (window.matchMedia && window.matchMedia('(max-width: 736px)').matches) {
+						playButton.hidden = false;
+						playButton.textContent = 'Enable Sound';
+					}
 					playButton.addEventListener('click', function () {
+						video.muted = false;
 						video.play().then(function () {
 							playButton.hidden = true;
-						if (skipButton) skipButton.style.display = 'block';
-					}).catch(function () {
-						/* Keep the play button visible if playback still fails. */
-					});
+							if (skipButton) skipButton.style.display = 'block';
+						}).catch(function () {
+							/* Keep the sound button visible if playback still fails. */
+							video.muted = true;
+						});
 					});
 				}
 
