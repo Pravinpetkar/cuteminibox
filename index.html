@@ -91,6 +91,28 @@
 				visibility: hidden;
 				pointer-events: none;
 			}
+			#intro-sound-hint {
+				position: absolute;
+				z-index: 2;
+				left: 50%;
+				bottom: 30px;
+				transform: translateX(-50%);
+				max-width: calc(100vw - 190px);
+				padding: 10px 16px;
+				border: 1px solid rgba(255,255,255,0.28);
+				border-radius: 999px;
+				background: rgba(20,24,28,0.68);
+				color: #fff;
+				font-size: 12px;
+				font-weight: 600;
+				letter-spacing: 0.03em;
+				text-align: center;
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				pointer-events: none;
+				transition: opacity 0.25s ease;
+			}
+			#intro-sound-hint.hide { opacity: 0; }
 			#skip-intro {
 				position: absolute;
 				bottom: 30px;
@@ -140,7 +162,15 @@
 					object-position: center;
 					background: #d6d6d6;
 				}
-				#skip-intro {
+					#intro-sound-hint {
+					left: 16px;
+					bottom: max(18px, env(safe-area-inset-bottom));
+					transform: none;
+					max-width: calc(100vw - 190px);
+					padding: 10px 12px;
+					font-size: 11px;
+				}
+			#skip-intro {
 					right: max(16px, env(safe-area-inset-right));
 					bottom: max(18px, env(safe-area-inset-bottom));
 					min-height: 44px;
@@ -165,6 +195,7 @@
 				<source src="videos/cmb-intro.mp4" type="video/mp4" />
 				Your browser does not support the video element.
 			</video>
+			<div id="intro-sound-hint" aria-live="polite">Tap anywhere to enable sound</div>
 			<button id="skip-intro" type="button">Skip Intro</button>
 		</div>
 
@@ -451,11 +482,13 @@
 					}
 				}
 
+				var soundHint = document.getElementById('intro-sound-hint');
 				var soundEnabled = false;
 				function enableIntroSound(event) {
 					if (finished || soundEnabled) return;
 					if (skipButton && (event.target === skipButton || skipButton.contains(event.target))) return;
 
+					if (soundHint) soundHint.classList.add('hide');
 					soundEnabled = true;
 					video.muted = false;
 					video.volume = 1;
